@@ -15,11 +15,12 @@
 #
 
 PRODUCT_COPY_FILES := \
+        device/allwinner/p85/kernel:kernel \
 	device/allwinner/p85/ramdisk/init.rc:root/init.rc \
-	device/allwinner/p85/ramdisk/initlogo.rle:root/initlogo.rle \
 	device/allwinner/p85/ramdisk/init.sun4i.rc:root/init.sun4i.rc \
 	device/allwinner/p85/ramdisk/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
 	device/allwinner/p85/ramdisk/ueventd.sun4i.rc:root/ueventd.sun4i.rc
+	#device/allwinner/p85/ramdisk/adbd:root/sbin/adbd \
 
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -53,12 +54,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.vold.umsdirtyratio=20 \
 	net.dns1=8.8.8.8 \
 	net.dns2=8.8.4.4 \
-	ro.media.enc.jpeg.quality=100 \
-	debug.sf.hw=1 \
-	video.accelerate.hw=1 \
-	debug.performance.tuning=1 \
-	ro.media.dec.jpeg.memcap=8000000 \
-	ro.media.enc.hprof.vid.bps=800000 \
 	persist.sys.use_dithering=0 \
 	persist.sys.purgeable_assets=0 \
 	windowsmgr.max_events_per_sec=240 \
@@ -66,63 +61,58 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	view.minimum_fling_velocity=25 \
 	updateme.disableinstalledapps=1 \
 	updateme.disablescripts=1 \
-	ro.additionalmounts = /mnt/extsd \
-	ro.vold.switchablepair=/mnt/sdcard,/mnt/extsd \
+	ro.additionalmounts=/storage/sdcard1 \
+	ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1 \
 	persist.sys.vold.switchexternal=0 \
-	usb.audio.out.device=pcmC2D0p \
-	usb.audio.cap.device=pcmC0D0c
+	ro.disable_phablet_ui=0
+	#rild.libpath=/system/lib/liballwinner-ril.so \
+        #rild.libargs=-d /dev/ttyUSB2
+
 
 DEVICE_PACKAGE_OVERLAYS := device/allwinner/p85/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
-	frameworks/base/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
-	frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-	frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-	frameworks/base/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
-	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-	frameworks/base/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
-	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-	frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-	frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-	frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-	frameworks/base/data/etc/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
+	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
+	frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+	frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+	frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
+	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+	frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+	frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
+	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+	frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml \
-        frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-        frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
 
-
+# Other stuff
 PRODUCT_PACKAGES += \
-	librs_jni
-
-# Hardware libs
-PRODUCT_PACKAGES += \
-	gralloc.sun4i \
-	display.sun4i \
-	hwcomposer.sun4i \
-	lights.sun4i \
-	sensors.sun4i \
-	gps.sun4i \
-	audio.primary.sun4i \
-	audio.a2dp.default \
-	audio_policy.sun4i \
-	libaudioutils \
-	libtinyalsa \
-	libswdrm \
-	Camera \
-	libjni_mosaic \
+	librs_jni \
+	rild_sun4i \
+	power.sun4i \
 	chat \
 	u3gmonitor \
 	devlistener
-	
-# CedarX libraries
-PRODUCT_PACKAGES += libCedarA libCedarX libcedarv libcedarxbase libcedarxosal libswdrm libcedarxsftdemux
+
+# EGL stuff
+PRODUCT_PACKAGES += \
+        gralloc.sun4i \
+	hwcomposer.sun4i \
+	display.sun4i \
+
+#Sensors
+PRODUCT_PACKAGES += \
+        lights.sun4i \
+	sensors.sun4i
+
+# Camera
+#PRODUCT_PACKAGES += \
+#        camera.sun4i
 
 # CM9 apps
 PRODUCT_PACKAGES += \
@@ -134,10 +124,41 @@ PRODUCT_PACKAGES += \
 	make_ext4fs \
 	e2fsck
 
+# Audio stuff
+PRODUCT_PACKAGES += \
+        audio.a2dp.default \
+	libaudioutils \
+	libtinyalsa \
+	audio_policy.sun4i \
+	audio.primary.sun4i \
+	audio.usb.default
+	
+# CedarX libraries
+PRODUCT_PACKAGES += \
+        libCedarA \
+	libCedarX \
+	libcedarv \
+	libcedarxbase \
+	libcedarxosal \
+	libswdrm \
+	libcedarxsftdemux \
+	libcedarv_adapter \
+	libve \
+	libfacedetection \
+	libaw_audio \
+	libaw_audioa \
+	libcedarv_base \
+	libstagefright_soft_cedar_h264dec \
+	librtmp
 $(call inherit-product, build/target/product/full_base.mk)
 
 # Should be after the full_base include, which loads languages_full
-PRODUCT_LOCALES += mdpi
+PRODUCT_AAPT_CONFIG := large xlarge mdpi
+PRODUCT_AAPT_PREF_CONFIG := mdpi
+#PRODUCT_LOCALES += mdpi
 
 PRODUCT_NAME := full_p85
 PRODUCT_DEVICE := p85
+
+TARGET_SCREEN_HEIGHT := 768
+TARGET_SCREEN_WIDTH := 1024
