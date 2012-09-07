@@ -15,12 +15,11 @@
 #
 
 PRODUCT_COPY_FILES := \
-        device/allwinner/p85/kernel:kernel \
-	device/allwinner/p85/ramdisk/init.rc:root/init.rc \
-	device/allwinner/p85/ramdisk/init.sun4i.rc:root/init.sun4i.rc \
+        device/allwinner/p85/ramdisk/init.sun4i.rc:root/init.sun4i.rc \
 	device/allwinner/p85/ramdisk/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
-	device/allwinner/p85/ramdisk/ueventd.sun4i.rc:root/ueventd.sun4i.rc
-	#device/allwinner/p85/ramdisk/adbd:root/sbin/adbd \
+	device/allwinner/p85/ramdisk/ueventd.rc:root/ueventd.rc \
+	device/allwinner/p85/ramdisk/ueventd.sun4i.rc:root/ueventd.sun4i.rc \
+	device/allwinner/p85/ramdisk/adbd:root/sbin/adbd \
 
 PRODUCT_CHARACTERISTICS := tablet
 

@@ -1,41 +1,80 @@
 import init.sun4i.usb.rc
 
 on early-init
-	export EXTERNAL_STORAGE /storage/sdcard0
-	export SECONDARY_STORAGE /storage/sdcard1
-	mkdir /storage 0050 system sdcard_r
-	mkdir /storage/sdcard0 0000 system system
-	mkdir /storage/sdcard1 0000 system system
-	mkdir /storage/sdcard2 0000 system system
-	symlink /storage/sdcard0 /sdcard
-	symlink /storage/sdcard1 /extsd
-	symlink /storage/sdcard0 /mnt/sdcard
-	symlink /storage/sdcard1 /mnt/extsd
-	symlink /storage/sdcard3 /mnt/udisk
+
+        export EXTERNAL_STORAGE /storage/sdcard0
+        export SECONDARY_STORAGE /storage/sdcard1
+        mkdir /storage 0050 system sdcard_r
+        mkdir /storage/sdcard0 0000 system system
+        mkdir /storage/sdcard1 0000 system system
+        mkdir /storage/sdcard2 0000 system system
+        symlink /storage/sdcard1 /extsd
+        symlink /storage/sdcard2 /usbdisk
+        symlink /storage/sdcard0 /sdcard
+        symlink /storage/sdcard0 /mnt/sdcard
 
 on fs
-    
-    symlink /dev/block/nanda /dev/block/bootloader
-    symlink /dev/block/nandc /dev/block/boot
-    symlink /dev/block/nandd /dev/block/system
-    symlink /dev/block/nande /dev/block/data
-    symlink /dev/block/nandg /dev/block/recovery
-    symlink /dev/block/nandh /dev/block/cache
-    mount ext4 /dev/block/system /system wait ro noatime nodev barrier=0 nobh data=writeback noauto_da_alloc
-    mount ext4 /dev/block/data /data wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc
-    mount ext4 /dev/block/cache /cache wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc
 
-on boot	
+        symlink /dev/block/nanda /dev/block/bootloader
+        symlink /dev/block/nandc /dev/block/boot
+        symlink /dev/block/nandd /dev/block/system
+        symlink /dev/block/nande /dev/block/data
+        symlink /dev/block/nandg /dev/block/recovery
+        symlink /dev/block/nandh /dev/block/cache
+
+        #exec /system/bin/e2fsck -y /dev/block/system 
+        #exec /system/bin/e2fsck -y /dev/block/data 
+        #exec /system/bin/e2fsck -y /dev/block/cache
+
+        mount ext4 /dev/block/system /system wait ro noatime nodev barrier=0 nobh data=writeback noauto_da_alloc
+        mount ext4 /dev/block/data /data wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc
+        mount ext4 /dev/block/cache /cache wait noatime nodev barrier=0 nobh data=writeback noauto_da_alloc
+
+on post-fs
+
+# bluetooth power up/down interface
+        chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+        chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+        chmod 0660 /sys/class/rfkill/rfkill0/state
+        chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
+        chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
+        chmod 0660 /sys/class/rfkill/rfkill1/state
+        write /sys/class/rfkill/rfkill0/state 0
+        setprop rw.bluetooth.status "0"
+
+on post-fs-data
+        mkdir /data/misc/wifi 0771 wifi wifi
+        mkdir /data/misc/wifi/sockets 0771 wifi wifi
+        mkdir /data/misc/dhcp 0771 dhcp dhcp
+
+on boot
+
+        insmod /system/lib/modules/ump.ko
+        insmod /system/lib/modules/mali.ko
+        insmod /system/lib/modules/videobuf-core.ko
+        insmod /system/lib/modules/videobuf-dma-contig.ko
+        insmod /system/lib/modules/mma7660.ko
+        insmod /system/lib/modules/hi704.ko
+        insmod /system/lib/modules/sun4i_csi0.ko
+        insmod /system/lib/modules/usbnet.ko
+        insmod /system/lib/modules/asix.ko
+        insmod /system/lib/modules/qf9700.ko
+        insmod /system/lib/modules/mcs7830.ko
+        insmod /system/lib/modules/rtl8150.ko
+        insmod /system/lib/modules/ft5306.ko
+
+        chown system system /sys/class/timed_output/sun4i-vibrator/enable
+
         # Enable interactive governor
         write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
 
         # Lower maximum frequency when screen is off
-        write /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq 696000
+        write /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq 700000
 
         # cpufreq interactive governor: timer 20ms, min sample 20ms, hispeed 700MHz
         write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
         write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 20000
-        write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 696000
+        write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 700000
 
         # chown adequately for power HAL
         chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
@@ -45,35 +84,6 @@ on boot
         chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
         chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
         chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
-
-	# gpu drivers
-	insmod /system/lib/modules/ump.ko
-	insmod /system/lib/modules/mali.ko
-	# touchscreen drivers
-	insmod /system/lib/modules/ft5306.ko
-	# gsensor drivers
-	insmod /system/lib/modules/mma7660.ko
-	# camera drivers
-	insmod /system/lib/modules/videobuf-core.ko
-	insmod /system/lib/modules/videobuf-dma-contig.ko
-	insmod /system/lib/modules/hi704.ko
-	insmod /system/lib/modules/sun4i_csi1.ko
-	insmod /system/lib/modules/sun4i_csi0.ko
-	# usb ethernet drivers
-	insmod /system/lib/modules/usbnet.ko
-	insmod /system/lib/modules/asix.ko
-	insmod /system/lib/modules/qf9700.ko
-	insmod /system/lib/modules/mcs7830.ko
-	insmod /system/lib/modules/rtl8150.ko
-	# misc
-	chown system system /sys/class/timed_output/sun4i-vibrator/enable
-	chown system system /sys/class/rfkill/rfkill0/state
-	chmod 0777  /sys/class/rfkill/rfkill0/state
-	write /sys/class/rfkill/rfkill0/state 0
-
-on post-fs-data
-	mkdir /data/misc/sensors 0777 system system
-	setprop vold.post_fs_data_done 1
 
 # wifi related service
 service wpa_supplicant /system/bin/wpa_supplicant -D wext -i wlan0 \
@@ -123,9 +133,24 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service memsicd /system/bin/logwrapper /system/bin/memsicd
-   class troy
-   oneshot
+service u3gmonitor /system/bin/u3gmonitor
+    class main
+    user root
+    group root
+    oneshot
 
-on property:dev.bootcomplete=1
-    write /sys/module/lowmemorykiller/parameters/minfree "2048,4096,51200,56320,61440,70400"
+service hciattach /system/bin/hciattach -n -s 115200 /dev/ttyS1 rda 1500000
+    class main
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot	
+
+# adb over network
+on property:service.adb.tcp.port=5555
+    stop adbd
+    start adbd
+on property:service.adb.tcp.port=-1
+    stop adbd
+    start adbd
+
