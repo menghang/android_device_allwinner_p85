@@ -28,11 +28,12 @@ PRODUCT_COPY_FILES += \
 	$(DEVICE_PREBUILT)/bin/ntfs-3g:system/bin/ntfs-3g \
 	$(DEVICE_PREBUILT)/bin/ntfs-3g.probe:system/bin/ntfs-3g.probe \
 	$(DEVICE_PREBUILT)/bin/mkntfs:system/bin/mkntfs \
-	$(DEVICE_PREBUILT)/bin/reboot-recovery.sh:system/bin/reboot-recovery.sh \
 	$(DEVICE_PREBUILT)/bin/usb_modeswitch:system/bin/usb_modeswitch
+
 	#$(DEVICE_PREBUILT)/bin/hdmi-audio:system/bin/hdmi-audio \
 	#$(DEVICE_PREBUILT)/bin/mass-storage:system/bin/mass-storage
-	#$(DEVICE_PREBUILT)/bin/rild:system/bin/rild \
+	#$(DEVICE_PREBUILT)/bin/rild:system/bin/rild
+	#$(DEVICE_PREBUILT)/bin/reboot-recovery.sh:system/bin/reboot-recovery.sh
 
 # /system/etc
 PRODUCT_COPY_FILES += \

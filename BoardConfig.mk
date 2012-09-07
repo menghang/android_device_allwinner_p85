@@ -29,7 +29,7 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_VFP := true
-TARGET_ARCH_VARIANT_CPU := cortex-a8
+TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_ARCH_VARIANT_FPU := neon
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_ARMV7A := true
@@ -61,8 +61,8 @@ TARGET_BOOTANIMATION_USE_RGB565 := true
 
 #Recovery Stuff
 #BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/allwinner/p85/recovery_keys.c
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
-BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
+#BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
+#BOARD_UMS_2ND_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun1/file"
 #TARGET_RECOVERY_INITRC := device/allwinner/p85/recovery_init.rc
 
 #Misc stuff
