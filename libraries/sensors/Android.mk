@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ifneq ($(findstring $(SW_BOARD_USES_GSENSOR_TYPE),mma7660 mma8451), )
+
+
 LOCAL_PATH := $(call my-dir)
 
 # HAL module implemenation, not prelinked, and stored in
@@ -19,17 +22,46 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+ifeq ($(SW_BOARD_USES_GSENSOR_TYPE), mma7660)
+LOCAL_CPPFLAGS += -DACCELEROMETER_SENSOR_MMA7660
+endif
+
+ifeq ($(SW_BOARD_USES_GSENSOR_TYPE), mma8451)
+LOCAL_CPPFLAGS += -DACCELEROMETER_SENSOR_MMA8451
+endif
+
+
+ifeq ($(SW_BOARD_GSENSOR_DIRECT_X), true)
+LOCAL_CPPFLAGS += -DGSENSOR_DIRECT_X
+endif
+
+ifeq ($(SW_BOARD_GSENSOR_DIRECT_Y), true)
+LOCAL_CPPFLAGS += -DGSENSOR_DIRECT_Y
+endif
+
+ifeq ($(SW_BOARD_GSENSOR_DIRECT_Z), true)
+LOCAL_CPPFLAGS += -DGSENSOR_DIRECT_Z
+endif
+
+ifeq ($(SW_BOARD_GSENSOR_XY_REVERT), true)
+LOCAL_CPPFLAGS += -DGSENSOR_XY_REVERT
+endif
+
 LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_MODULE := sensors.$(TARGET_BOARD_PLATFORM)
-LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_TAGS := eng
+LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
 
-LOCAL_SRC_FILES :=                                 \
-                        sensors.cpp                \
-                        SensorBase.cpp             \
-                        AccelSensor.cpp            \
-                        InputEventReader.cpp       \
+LOCAL_SRC_FILES := 						\
+				sensors.cpp 			\
+				SensorBase.cpp			\
+				LightSensor.cpp			\
+				AccelSensor.cpp               \
+                        InputEventReader.cpp
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libdl
 
 include $(BUILD_SHARED_LIBRARY)
+
+endif

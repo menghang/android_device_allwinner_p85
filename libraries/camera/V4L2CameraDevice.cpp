@@ -70,24 +70,6 @@ status_t V4L2CameraDevice::Initialize()
 	return V4L2Camera::Initialize();
 }
 
-static bool
-deviceCardMatches(const char *matchCard)
-{
-   char buffer[8192];
-   bool ret;
-   FILE *fd = fopen( "/proc/modules", "r" );
-
-    if (fd) 
-    {
-       int l  = fread(buffer, 1, sizeof(buffer)-1, fd);
-       buffer[l] = 0;
-       if (strstr(buffer, matchCard)) {
-           ret = strstr(buffer, matchCard);
-        }
-    }
-
-    return ret;
-}
 
 /****************************************************************************
  * V4L2Camera device abstract interface implementation.
@@ -130,7 +112,10 @@ status_t V4L2CameraDevice::connectDevice()
 		mPreviewBuffer.buf_phy_addr[i] |= 0x40000000;
 		LOGD("preview buffer: index: %d, vir: %x, phy: %x, len: %x", 
 				i, mPreviewBuffer.buf_vir_addr[i], mPreviewBuffer.buf_phy_addr[i], buffer_len);
-	//	memset((void*)mPreviewBuffer.buf_vir_addr[i], 0x10, MAX_PREVIEW_WIDTH * MAX_PREVIEW_HEIGHT /2);
+
+		memset((void*)mPreviewBuffer.buf_vir_addr[i], 0x10, MAX_PREVIEW_WIDTH * MAX_PREVIEW_HEIGHT);
+		memset((void*)mPreviewBuffer.buf_vir_addr[i] + MAX_PREVIEW_WIDTH * MAX_PREVIEW_HEIGHT, 
+			0x80, MAX_PREVIEW_WIDTH * MAX_PREVIEW_HEIGHT / 2);
 	}
 
     /* There is no device to connect to. */
@@ -214,7 +199,7 @@ status_t V4L2CameraDevice::startDevice(int width,
 	mPreviewAfter = 1000000 / getFrameRate();
 
 	// front camera do not use hw preview, SW preview will mirror it
-	if (mCameraFacing == CAMERA_FACING_FRONT && (!deviceCardMatches("gt2005")))
+	if (mCameraFacing == CAMERA_FACING_FRONT)
 	{
 		LOGD("do not us hw preview");
 		mPreviewUseHW = false;
@@ -430,7 +415,6 @@ int V4L2CameraDevice::openCameraDev()
 {
 	// open V4L2 device
 	mCamFd = open(mDeviceName, O_RDWR | O_NONBLOCK, 0);
-
 	if (mCamFd == -1) 
 	{ 
         LOGE("ERROR opening V4L interface: %s", strerror(errno)); 
@@ -452,7 +436,6 @@ int V4L2CameraDevice::openCameraDev()
 	int ret = -1;
 	struct v4l2_capability cap; 
 	ret = ioctl (mCamFd, VIDIOC_QUERYCAP, &cap); 
-
     if (ret < 0) 
 	{ 
         LOGE("Error opening device: unable to query device."); 
@@ -478,10 +461,10 @@ void V4L2CameraDevice::closeCameraDev()
 {
 	F_LOG;
 	
-	if (mCamFd != 0)
+	if (mCamFd != NULL)
 	{
 		close(mCamFd);
-		mCamFd = 0;
+		mCamFd = NULL;
 	}
 }
 

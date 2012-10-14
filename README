@@ -1,0 +1,76 @@
+Compilation Notes
+
+
+FAQs
+
+* HW accelerated playback of local contents is limited to few files format but there's a nice workaround: since network playback works flawlessly we'll install an UPNP server that will automatically open our files from the loopback network interface. In this case stagefright player will kick in and will play every file without any trouble.
+Install both MX Player and BubbleUPNP from Play store. Open BubbleUPNP and from "Library" section select the file to play. Choose MX Player as default player and enjoy the HW accelerated video playback
+
+Sources
+
+* Github repository
+
+repo init -u git://github.com/CyanogenMod/android.git -b jellybean
+
+paste these lines inside new file .repo/manifests/local_manifest.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- remote  name="github" fetch="git://github.com/" /-->
+  <!-- remove-project name="hardware/libhardware"/-->
+  <remove-project name="CyanogenMod/android_hardware_libhardware"/>
+  <remove-project name="CyanogenMod/android_frameworks_av"/>
+  <remove-project name="CyanogenMod/android_frameworks_native"/>
+  <remove-project name="CyanogenMod/android_frameworks_base"/>
+  <remove-project name="CyanogenMod/android_system_core"/>
+  <remove-project name="CyanogenMod/android_system_vold"/>
+  <remove-project name="CyanogenMod/android_system_bluetooth"/>
+  <project remote="github" revision="jellybean" name="deathscythe/android_device_p85" path="device/allwinner/p85" />
+  <project remote="github" revision="jellybean-cm" name="shaun2029/android_hardware_realtek" path="hardware/realtek" />
+  <project remote="github" revision="jb_ch" name="deathscythe/android_hardware_libhardware" path="hardware/libhardware" />
+  <project remote="github" revision="jb_ch" name="deathscythe/android_frameworks_av" path="frameworks/av" />
+  <project remote="github" revision="jb_ch" name="deathscythe/android_frameworks_native" path="frameworks/native" />
+  <project remote="github" revision="jb_ch" name="deathscythe/android_frameworks_base" path="frameworks/base" />
+  <project remote="github" revision="jellybean" name="deathscythe/android_system_core" path="system/core" />
+  <project remote="github" revision="jellybean" name="deathscythe/android_system_vold" path="system/vold" />
+</manifest>
+
+now type this command
+
+repo sync -j8
+
+finally you're ready to build it
+
+source build/envsetup.sh
+lunch cm_p85-userdebug && mka
+
+mka otapackage
+
+
+Prerequisites:
+
+1. Needs realtek:
+	git clone https://github.com/allwinner-dev-team/android_hardware_realtek.git
+	cd android_hardware_realtek
+	git checkout jellybean
+
+	a. Copy the folder wlan to 
+	hardware/realtek/
+	
+	b. Move the folder hardware/realtek/wlan/wpa_supplicant_8_lib to
+	media/Storage/git/jellybean/device/allwinner/p85/libraries/wpa_supplicant_8_lib
+
+2. Prebuilts
+	cd into vendor/cm and do
+	./get-prebuilts
+
+	a. Extract UpdateMe.apk/assets/update_me.xml to
+	/media/Storage/git/jellybean/device/allwinner/p85/prebuilt/
+
+	b. Extract proprietary/Term.apk/lib/armeabi/libjackpal-androidterm4.so into
+	vendor/cm/proprietary/lib/armeabi/
+
+	c. Copy UpdateMe.apk to
+	device/allwinner/p85/prebuilt/app/UpdateMe.apk
+
+

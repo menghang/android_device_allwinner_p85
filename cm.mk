@@ -14,30 +14,17 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/allwinner/p85/full_p85.mk)
+$(call inherit-product, device/softwinner/p85/full_p85.mk)
 
 # Inherit some common CM9 stuff.
 $(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)
-$(call inherit-product, vendor/cm/config/gsm.mk)
 $(call inherit-product, device/allwinner/p85/p85-blobs.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := cm_p85
-PRODUCT_BRAND := Allwinner
+PRODUCT_BRAND := Google
 PRODUCT_DEVICE := p85
-PRODUCT_MODEL := P85
-PRODUCT_MANUFACTURER := Allwinner
+PRODUCT_MODEL := Nexus 7
+PRODUCT_MANUFACTURER := Asus
 PRODUCT_RELEASE_NAME := p85
-
-#UTC_DATE := $(shell date +%s)
-#DATE     := $(shell date +%Y%m%d)
-
-#PRODUCT_BUILD_PROP_OVERRIDES += \
-#    PRODUCT_NAME=${PRODUCT_MODEL}_${PRODUCT_SFX} \
-#    TARGET_DEVICE=a10 \
-#    BUILD_FINGERPRINT=softwinners/crane_Novo704FC_E3_SC3017/crane-Novo704FC_E3-SC3017:4.0.3/IML74K/20120306:eng/release-keys \
-#    PRIVATE_BUILD_DESC="crane_Novo704FC_E3_SC3017-eng 4.0.3 IML74K 20120306 release-keys" \
-#    BUILD_NUMBER=${DATE} \
-#    BUILD_VERSION_TAGS=release-keys \
-#    TARGET_BUILD_TYPE=eng
-
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=nakasi TARGET_DEVICE=grouper BUILD_FINGERPRINT="google/nakasi/grouper:4.1.1/JRO03D/402395:user/release-keys" PRIVATE_BUILD_DESC="nakasi-user 4.1.1 JRO03D 402395 release-keys"
