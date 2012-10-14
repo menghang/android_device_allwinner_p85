@@ -37,8 +37,8 @@ LOCAL_C_INCLUDES += \
 	external/jpeg \
 	external/skia/include/core \
 	frameworks/base/core/jni/android/graphics \
-	device/allwinner/common/include \
-	external/cedarx/CedarX/include/include_camera \
+	device/allwinner/p85/libraries/include \
+	frameworks/av/media/CedarX-Projects/CedarX/include/include_camera \
 
 LOCAL_SRC_FILES := \
 	CameraHal.cpp \
