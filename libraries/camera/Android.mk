@@ -39,6 +39,7 @@ LOCAL_C_INCLUDES += \
 	frameworks/base/core/jni/android/graphics \
 	device/allwinner/p85/libraries/include \
 	frameworks/av/media/CedarX-Projects/CedarX/include/include_camera \
+        frameworks/native/include \
 
 LOCAL_SRC_FILES := \
 	CameraHal.cpp \

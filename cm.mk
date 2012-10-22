@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/softwinner/p85/full_p85.mk)
+$(call inherit-product, device/allwinner/p85/full_p85.mk)
 
 # Inherit some common CM9 stuff.
 $(call inherit-product, vendor/cm/config/common_full_tablet_wifionly.mk)

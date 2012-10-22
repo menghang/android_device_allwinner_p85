@@ -91,7 +91,7 @@
     
     <bool translatable="false" name="config_wifi_p2p_support">false</bool>
     
-    <integer name="config_screenBrightnessDim">30</integer>
+    <integer name="config_screenBrightnessDim">50</integer>
     
     <integer name="db_connection_pool_size">3</integer>
     

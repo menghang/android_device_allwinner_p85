@@ -111,7 +111,7 @@ PRODUCT_PACKAGES += \
 	libfacedetection \
 	librtmp \
 	libve \
-	audio.primary.exDroid \
+	audio.primary.sun4i \
 	audio.a2dp.default \
 	audio.usb.default \
 	libaudioutils \
