@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 TARGET_BOARD_PLATFORM := sun4i
-TARGET_BOOTLOADER_BOARD_NAME := crane_p85
+TARGET_BOOTLOADER_BOARD_NAME := P85
 
 USE_CAMERA_STUB := false
 HAVE_HTC_AUDIO_DRIVER := true

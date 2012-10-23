@@ -12,10 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update Me
-#PRODUCT_COPY_FILES += \
-#       device/allwinner/p85/prebuilt/app/UpdateMe.apk:system/app/UpdateMe.apk \
-#       device/allwinner/p85/prebuilt/update_me.xml:system/update_me.xml
 
 # /system/bin
 PRODUCT_COPY_FILES += \

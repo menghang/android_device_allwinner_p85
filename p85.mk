@@ -17,7 +17,6 @@
 PRODUCT_COPY_FILES := \
 	device/allwinner/p85/kernel:kernel \
 	device/allwinner/p85/init.rc:root/init.rc \
-	device/allwinner/p85/initlogo.rle:root/initlogo.rle \
 	device/allwinner/p85/init.sun4i.rc:root/init.sun4i.rc \
 	device/allwinner/p85/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
 	device/allwinner/p85/ueventd.sun4i.rc:root/ueventd.sun4i.rc
@@ -81,13 +80,9 @@ PRODUCT_COPY_FILES += \
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_PACKAGES += \
-	LiveWallpapers \
-	LiveWallpapersPicker \
-	MagicSmokeWallpapers \
-	HoloSpiralWallpaper 
+	LiveWallpapersPicker 
 
 PRODUCT_PACKAGES += \
-	VisualizationWallpapers \
 	librs_jni
 
 # Hardware libs
@@ -121,7 +116,8 @@ PRODUCT_PACKAGES += \
 
 # CM9 apps
 PRODUCT_PACKAGES += \
-	com.android.future.usb.accessory
+	com.android.future.usb.accessory \
+        FileManager
 
 # EXT4 Support
 PRODUCT_PACKAGES += \
