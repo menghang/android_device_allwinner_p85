@@ -26,13 +26,14 @@ PRODUCT_CHARACTERISTICS := tablet
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PROPERTY_OVERRIDES += \
+        persist.sys.root_access=3 \
 	ro.opengles.version = 131072 \
 	debug.egl.hw=1 \
 	ro.display.switch=1 \
 	ro.sf.lcd_density=160 \
 	hwui.render_dirty_regions=false \
 	wifi.interface = wlan0 \
-	wifi.supplicant_scan_interval = 150 \
+	wifi.supplicant_scan_interval = 120 \
 	persist.sys.strictmode.visual=0 \
 	persist.sys.strictmode.disable=1 \
 	persist.sys.usb.config=mass_storage,adb \
