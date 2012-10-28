@@ -83,8 +83,8 @@ PRODUCT_COPY_FILES += \
 	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
 
 # Publish that we support the live wallpaper feature.
-PRODUCT_PACKAGES += \
-	LiveWallpapersPicker 
+#PRODUCT_PACKAGES += \
+#	LiveWallpapersPicker 
 
 PRODUCT_PACKAGES += \
 	librs_jni
@@ -96,20 +96,6 @@ PRODUCT_PACKAGES += \
 	hwcomposer.sun4i \
 	lights.sun4i \
 	display.sun4i \
-        libcedarxbase \
-        libcedarxosal \
-	libcedarv \
-	libcedarv_adapter \
-        libcedarv_base \
-	libCedarA \
-	libCedarX \
-	libstagefright_soft_cedar_h264dec \
-        libswdrm \
-	libaw_audio \
-	libaw_audioa \
-	libfacedetection \
-	librtmp \
-	libve \
 	audio.primary.sun4i \
 	audio.a2dp.default \
 	audio.usb.default \
@@ -117,6 +103,24 @@ PRODUCT_PACKAGES += \
 	chat \
 	u3gmonitor \
 	devlistener
+# Cedar libs
+PRODUCT_PACKAGES += \
+	libCedarA \
+	libaw_audioa \
+	libCedarX \
+	libcedarxsftstream \
+	libthirdpartstream \
+	libstagefright_soft_cedar_h264dec \
+	libcedarxosal \
+	libcedarxbase \
+	libcedarv \
+	libaw_audio \
+	libswdrm \
+	libcedarv_base \
+	libcedarv_adapter \
+	libve \
+	libfacedetection \
+	librtmp
 
 # CM9 apps
 PRODUCT_PACKAGES += \
