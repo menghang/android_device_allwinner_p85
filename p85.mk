@@ -96,6 +96,7 @@ PRODUCT_PACKAGES += \
 	hwcomposer.sun4i \
 	lights.sun4i \
 	display.sun4i \
+	power.sun4i \
 	audio.primary.sun4i \
 	audio.a2dp.default \
 	audio.usb.default \
