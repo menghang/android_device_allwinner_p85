@@ -1,0 +1,4 @@
+<resources>
+    <bool name="config_show_expandedDesktop">true</bool>
+</resources>
+
