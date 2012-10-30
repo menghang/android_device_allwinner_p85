@@ -59,8 +59,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.additionalmounts=/storage/sdcard1 \
 	ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1 \
 	persist.sys.vold.switchexternal=0 \
-	ro.enable_tablet_ui=0 \
-	ro.enable_hide_navigation_bar=0 \
 	ro.has_sys_nav_bar=1 \
 	ro.sys_nav_bar_can_move=0 	
 
