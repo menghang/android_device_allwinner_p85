@@ -59,8 +59,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.additionalmounts=/storage/sdcard1 \
 	ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1 \
 	persist.sys.vold.switchexternal=0 \
-	ro.has_sys_nav_bar=1 \
-	ro.sys_nav_bar_can_move=0 	
+	hw.cameras=1
 
 DEVICE_PACKAGE_OVERLAYS := device/allwinner/p85/overlay
 
