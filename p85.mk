@@ -26,7 +26,8 @@ PRODUCT_CHARACTERISTICS := tablet
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PROPERTY_OVERRIDES += \
-        persist.sys.root_access=3 \
+	service.adb.root=1 \
+	persist.sys.root_access=3 \
 	ro.opengles.version = 131072 \
 	debug.egl.hw=1 \
 	ro.display.switch=1 \
@@ -58,8 +59,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	updateme.disablescripts=1 \
 	ro.additionalmounts=/storage/sdcard1 \
 	ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1 \
-	persist.sys.vold.switchexternal=0 \
-	hw.cameras=1
+	persist.sys.vold.switchexternal=0 
 
 DEVICE_PACKAGE_OVERLAYS := device/allwinner/p85/overlay
 
@@ -89,7 +89,7 @@ PRODUCT_PACKAGES += \
 # Hardware libs
 PRODUCT_PACKAGES += \
 	gralloc.sun4i \
-        sensors.sun4i \
+	sensors.sun4i \
 	hwcomposer.sun4i \
 	lights.sun4i \
 	display.sun4i \
@@ -123,21 +123,31 @@ PRODUCT_PACKAGES += \
 # CM9 apps
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory \
-        FileManager
+	FileManager
 
 # EXT4 Support
 PRODUCT_PACKAGES += \
 	make_ext4fs \
 	e2fsck
 
+TARGET_BOOTANIMATION_NAME := horizontal-1024x768
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    service.adb.root=1 \
+    ro.secure=0 \
+    ro.allow.mock.location=1 \
+    ro.debuggable=1
+
 $(call inherit-product, build/target/product/full_base.mk)
 
 # Should be after the full_base include, which loads languages_full
-PRODUCT_AAPT_CONFIG := large xlarge mdpi
+PRODUCT_AAPT_CONFIG := large xlarge mdpi hdpi normal tvdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 PRODUCT_NAME := full_p85
 PRODUCT_DEVICE := p85
 
-TARGET_SCREEN_HEIGHT := 768
-TARGET_SCREEN_WIDTH := 1024
+#TARGET_SCREEN_HEIGHT := 768
+#TARGET_SCREEN_WIDTH := 1024
+
+
