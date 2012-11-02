@@ -52,7 +52,7 @@ PRODUCT_COPY_FILES += \
 	device/allwinner/p85/prebuilt/lib/egl/libGLESv1_CM_mali.so:system/lib/egl/libGLESv1_CM_mali.so \
 	device/allwinner/p85/prebuilt/lib/egl/libGLESv2_mali.so:system/lib/egl/libGLESv2_mali.so \
 	device/allwinner/p85/prebuilt/lib/liballwinner-ril.so:system/lib/liballwinner-ril.so \
-        device/allwinner/p85/prebuilt/lib/hw/camera.sun4i.so:system/lib/hw/camera.sun4i.so \
+	device/allwinner/p85/prebuilt/lib/hw/camera.sun4i.so:system/lib/hw/camera.sun4i.so \
 	device/allwinner/p85/prebuilt/lib/libMali.so:system/lib/libMali.so \
 	device/allwinner/p85/prebuilt/lib/libUMP.so:system/lib/libUMP.so \
 	device/allwinner/p85/prebuilt/lib/libMali.so:obj/lib/libMali.so \

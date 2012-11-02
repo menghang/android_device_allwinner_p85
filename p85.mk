@@ -61,6 +61,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1 \
 	persist.sys.vold.switchexternal=0 
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    service.adb.root=1 \
+    ro.secure=0 \
+    ro.allow.mock.location=1 \
+    ro.debuggable=1
+
 DEVICE_PACKAGE_OVERLAYS := device/allwinner/p85/overlay
 
 # Permissions
@@ -122,8 +128,7 @@ PRODUCT_PACKAGES += \
 
 # CM9 apps
 PRODUCT_PACKAGES += \
-	com.android.future.usb.accessory \
-	FileManager
+	com.android.future.usb.accessory
 
 # EXT4 Support
 PRODUCT_PACKAGES += \
@@ -132,16 +137,10 @@ PRODUCT_PACKAGES += \
 
 TARGET_BOOTANIMATION_NAME := horizontal-1024x768
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    service.adb.root=1 \
-    ro.secure=0 \
-    ro.allow.mock.location=1 \
-    ro.debuggable=1
-
 $(call inherit-product, build/target/product/full_base.mk)
 
 # Should be after the full_base include, which loads languages_full
-PRODUCT_AAPT_CONFIG := large xlarge mdpi hdpi normal tvdpi
+PRODUCT_AAPT_CONFIG := normal large xlarge ldpi mdpi hdpi tvdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 PRODUCT_NAME := full_p85

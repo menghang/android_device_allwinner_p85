@@ -13,12 +13,15 @@
 # limitations under the License.
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, device/allwinner/p85/p85-blobs.mk)
 $(call inherit-product, device/allwinner/p85/p85.mk)
 $(call inherit-product, device/allwinner/p85/libraries/Android.mk)
 $(call inherit-product, device/allwinner/p85/packages/Android.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
-$(call inherit-product, vendor/cm/config/gsm.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+
 $(call inherit-product-if-exists, vendor/allwinner/p85/p85-vendor.mk)
 
 # Set those variables here to overwrite the inherited values.
