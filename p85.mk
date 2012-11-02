@@ -26,8 +26,8 @@ PRODUCT_CHARACTERISTICS := tablet
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	service.adb.root=1 \
 	persist.sys.root_access=3 \
+	persist.service.adb.enable=1 \
 	ro.opengles.version = 131072 \
 	debug.egl.hw=1 \
 	ro.display.switch=1 \
@@ -55,17 +55,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	windowsmgr.max_events_per_sec=240 \
 	view.touch_slop=2 \
 	view.minimum_fling_velocity=25 \
-	updateme.disableinstalledapps=1 \
-	updateme.disablescripts=1 \
 	ro.additionalmounts=/storage/sdcard1 \
 	ro.vold.switchablepair=/storage/sdcard0,/storage/sdcard1 \
-	persist.sys.vold.switchexternal=0 
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    service.adb.root=1 \
-    ro.secure=0 \
-    ro.allow.mock.location=1 \
-    ro.debuggable=1
+	persist.sys.vold.switchexternal=0
 
 DEVICE_PACKAGE_OVERLAYS := device/allwinner/p85/overlay
 
