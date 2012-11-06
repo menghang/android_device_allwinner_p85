@@ -130,7 +130,13 @@ PRODUCT_PACKAGES += \
 	make_ext4fs \
 	e2fsck
 
-TARGET_BOOTANIMATION_NAME := horizontal-1024x768
+#TARGET_BOOTANIMATION_NAME := horizontal-1024x768
+#TARGET_SCREEN_WIDTH := 1024
+#TARGET_SCREEN_HEIGHT := 768
+
+#Bootanimation
+PRODUCT_COPY_FILES += \
+	vendor/aokp/prebuilt/bootanimation/bootanimation_1024_768.zip:/system/media/bootanimation.zip
 
 $(call inherit-product, build/target/product/full_base.mk)
 
@@ -140,8 +146,4 @@ PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 PRODUCT_NAME := full_p85
 PRODUCT_DEVICE := p85
-
-#TARGET_SCREEN_HEIGHT := 768
-#TARGET_SCREEN_WIDTH := 1024
-
 
