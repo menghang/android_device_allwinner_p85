@@ -120,9 +120,10 @@ PRODUCT_PACKAGES += \
 	libfacedetection \
 	librtmp
 
-# CM9 apps
+# CM apps
 PRODUCT_PACKAGES += \
-	com.android.future.usb.accessory
+	com.android.future.usb.accessory \
+	CMFileManager
 
 # EXT4 Support
 PRODUCT_PACKAGES += \
