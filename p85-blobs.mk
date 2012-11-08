@@ -74,8 +74,8 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_COPY_FILES += \
 #	$(call find-copy-subdir-files,*,device/allwinner/p85/prebuilt/vendor/modules,system/vendor/modules)
 
-PRODUCT_COPY_FILES += \
-	$(call find-copy-subdir-files,*,device/allwinner/p85/prebuilt/lib/modules,system/lib/modules)
+#PRODUCT_COPY_FILES += \
+#	$(call find-copy-subdir-files,*,device/allwinner/p85/prebuilt/lib/modules,system/lib/modules)
 
 # HACK by turl: Create some intermediate files to link with libMali/libUMP
 $(shell mkdir -p out/target/product/p85/obj/SHARED_LIBRARIES/libMali_intermediates)
