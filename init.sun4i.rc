@@ -36,7 +36,7 @@ on boot
         chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
 
 	# gpu drivers
-	insmod /system/lib/modules/ump.ko
+	insmod /system/lib/modules/ump.ko	
 	insmod /system/lib/modules/mali.ko
 	# touchscreen drivers
 	insmod /system/lib/modules/ft5306.ko	
@@ -46,7 +46,7 @@ on boot
 	insmod /system/lib/modules/videobuf-core.ko
 	insmod /system/lib/modules/videobuf-dma-contig.ko 
 	insmod /system/lib/modules/hi704.ko
-	insmod /system/lib/modules/sun4i_csi1.ko
+	# insmod /system/lib/modules/sun4i_csi1.ko
 	insmod /system/lib/modules/sun4i_csi0.ko
 	# usb ethernet drivers
 	insmod /system/lib/modules/usbnet.ko

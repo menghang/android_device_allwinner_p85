@@ -91,10 +91,10 @@ WIFI_DRIVER_FW_PATH_PARAM := ""
 TARGET_CUSTOM_WIFI := ../../hardware/realtek/wlan/wifi_realtek.c
 
 # Beware: set only prebuilt OR source+config
-#TARGET_PREBUILT_KERNEL := device/allwinner/p85/kernel
-TARGET_KERNEL_CONFIG := p85_defconfig
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
-TARGET_KERNEL_SOURCE := $(ANDROID_BUILD_TOP)/kernel/
+TARGET_PREBUILT_KERNEL := device/allwinner/p85/kernel
+#TARGET_KERNEL_CONFIG := p85_defconfig
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
+#TARGET_KERNEL_SOURCE := $(ANDROID_BUILD_TOP)/kernel/
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_CMDLINE := console=ttyS0,115200 rw init=/init loglevel=8
 BOARD_KERNEL_PAGESIZE := 2048

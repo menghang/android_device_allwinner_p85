@@ -85,6 +85,12 @@
       <value>1104000</value>
       <value>1152000</value>
       <value>1200000</value>
+      <value>1248000</value>
+      <value>1296000</value>
+      <value>1344000</value>
+      <value>1392000</value>
+      <value>1440000</value>
+      <value>1488000</value>
   </array>
   <!-- Power consumption when CPU is idle -->
   <item name="cpu.idle">30</item>
@@ -134,6 +140,12 @@
       <value>173</value>
       <value>176</value>
       <value>179</value>
+      <value>182</value>
+      <value>185</value>
+      <value>188</value>
+      <value>191</value>
+      <value>194</value>
+      <value>197</value>
   </array>
   <!-- This is the battery capacity in mAh -->
   <item name="battery.capacity">8000</item>
