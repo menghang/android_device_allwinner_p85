@@ -15,7 +15,6 @@
 #
 
 PRODUCT_COPY_FILES := \
-	device/allwinner/p85/kernel:kernel \
 	device/allwinner/p85/init.rc:root/init.rc \
 	device/allwinner/p85/init.sun4i.rc:root/init.sun4i.rc \
 	device/allwinner/p85/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
