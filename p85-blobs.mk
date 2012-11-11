@@ -73,8 +73,8 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_COPY_FILES += \
 #	$(call find-copy-subdir-files,*,device/allwinner/p85/prebuilt/vendor/modules,system/vendor/modules)
 
-#PRODUCT_COPY_FILES += \
-#	$(call find-copy-subdir-files,*,device/allwinner/p85/prebuilt/lib/modules,system/lib/modules)
+PRODUCT_COPY_FILES += \
+	$(call find-copy-subdir-files,*,device/allwinner/p85/prebuilt/lib/modules,system/lib/modules)
 
 # OMX codec support
 PRODUCT_COPY_FILES += device/allwinner/p85/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml

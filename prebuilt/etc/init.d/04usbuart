@@ -1,0 +1,7 @@
+#!/system/bin/sh
+#
+
+insmod /system/lib/modules/cp210x.ko
+insmod /system/lib/modules/pl2302.ko
+
+echo "done USBUart Modules Autoload"
