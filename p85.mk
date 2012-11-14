@@ -21,13 +21,19 @@ PRODUCT_COPY_FILES := \
 	device/allwinner/p85/init.sun4i.usb.rc:root/init.sun4i.usb.rc \
 	device/allwinner/p85/ueventd.sun4i.rc:root/ueventd.sun4i.rc
 
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
+	ro.secure=0 \
+	ro.allow.mock.location=1 \
+	ro.debuggable=1 \
+	persist.sys.usb.config=mass_storage,adb \
+	persist.service.adb.enable=1
+
 PRODUCT_CHARACTERISTICS := tablet
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.root_access=3 \
-	persist.service.adb.enable=1 \
 	ro.opengles.version = 131072 \
 	debug.egl.hw=1 \
 	ro.display.switch=1 \
@@ -37,7 +43,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.supplicant_scan_interval = 120 \
 	persist.sys.strictmode.visual=0 \
 	persist.sys.strictmode.disable=1 \
-	persist.sys.usb.config=mass_storage,adb \
 	dalvik.vm.verify-bytecode=false \
 	dalvik.vm.dexopt-flags=v=n,o=v \
 	dalvik.vm.execution-mode=int:jit \
@@ -97,7 +102,6 @@ PRODUCT_PACKAGES += \
 	audio.usb.default \
 	libaudioutils \
 	chat \
-	u3gmonitor \
 	devlistener
 # Cedar libs
 PRODUCT_PACKAGES += \
